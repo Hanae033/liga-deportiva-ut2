@@ -4,7 +4,6 @@
   "cli": {
     "packageManager": "npm"
   },
-  
   "newProjectRoot": "projects",
   "projects": {
     "liga-deportiva-ut2": {
@@ -15,7 +14,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
@@ -36,38 +35,37 @@
             ]
           },
           "configurations": {
-  "production": {
-    "fileReplacements": [
-      {
-        "replace": "src/environments/environment.ts",
-        "with": "src/environments/environment.prod.ts"
-      }
-    ],
-    "budgets": [
-      {
-        "type": "initial",
-        "maximumWarning": "500kB",
-        "maximumError": "1MB"
-      },
-      {
-        "type": "anyComponentStyle",
-        "maximumWarning": "4kB",
-        "maximumError": "8kB"
-      }
-    ],
-    "outputHashing": "all"
-  },
-  "development": {
-    "optimization": false,
-    "extractLicenses": false,
-    "sourceMap": true
-  }
-},
-
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "liga-deportiva-ut2:build:production"
@@ -79,10 +77,9 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular-devkit/build-angular:karma"
         }
       }
     }
   }
 }
-

@@ -1,15 +1,13 @@
 {
   "name": "liga-deportiva-ut2",
   "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "serve -s dist/liga-deportiva-ut2 -l $PORT",
-    "build": "npx ng build --configuration production",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
-  "scripts": {
-  "build:all": "cd src && npm install && npx ng build --configuration production && cd ../liga-deportiva-backend && npm install"
+"scripts": {
+  "ng": "ng",
+  "start": "serve -s dist/liga-deportiva-ut2 -l $PORT",
+  "build": "npx ng build --configuration production",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test",
+  "build:all": "cd src && npm install && npx --yes ng build --configuration production && cd ../liga-deportiva-backend && npm install"
 },
   "prettier": {
     "printWidth": 100,

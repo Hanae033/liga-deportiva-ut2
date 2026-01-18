@@ -137,16 +137,16 @@ app.post('/api/matches', (req, res) => {
 // ============================
 
 
-const angularDistPath = path.join(__dirname, '../src/dist/liga-deportiva-ut2');
+const angularDistPath = path.join(__dirname, '../dist/liga-deportiva-ut2');
 
 app.use(express.static(angularDistPath));
-
 
 app.get('*', (req, res) => {
   if (!req.path.startsWith('/api')) {
     res.sendFile(path.join(angularDistPath, 'index.html'));
   }
 });
+
 
 
 app.listen(PORT, () => {

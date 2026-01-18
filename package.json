@@ -3,12 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "ng": "ng",
-    "start": "serve -s dist/liga-deportiva-ut2 -l $PORT",
+    "start": "cd liga-deportiva-backend && node server.js",
     "build": "npx ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "build:all": "npm install && npx ng build --configuration production && cd liga-deportiva-backend && npm install"
+    "test": "ng test"
   },
   "prettier": {
     "printWidth": 100,

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cd liga-deportiva-backend && node server.js",
+    "start": "cd liga-deportiva-backend && npm install && node server.js",
     "build": "npx ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.1.0",
-    "@angular/build": "^21.0.5",
     "@angular/compiler-cli": "^21.0.0",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",

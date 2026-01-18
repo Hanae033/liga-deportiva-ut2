@@ -1,14 +1,15 @@
 {
   "name": "liga-deportiva-ut2",
   "version": "0.0.0",
-"scripts": {
-  "ng": "ng",
-  "start": "serve -s dist/liga-deportiva-ut2 -l $PORT",
-  "build": "npx ng build --configuration production",
-  "watch": "ng build --watch --configuration development",
-  "test": "ng test",
-  "build:all": "cd src && npm install && npx --yes ng build --configuration production && cd ../liga-deportiva-backend && npm install"
-},
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "serve -s dist/liga-deportiva-ut2 -l $PORT",
+    "build": "npx ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "build:all": "npm install && npx ng build --configuration production && cd liga-deportiva-backend && npm install"
+  },
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
@@ -21,7 +22,6 @@
       }
     ]
   },
-  "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
     "@angular/common": "^21.0.0",
@@ -44,3 +44,4 @@
     "vitest": "^4.0.8"
   }
 }
+

@@ -3,6 +3,7 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const path = require('path');
 
 dotenv.config();
 
@@ -12,18 +13,23 @@ const User = require('./models/User');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
 // Conectar a MongoDB
 connectDB();
 
-// PARTIDOS en memoria (dejamos igual)
+// PARTIDOS en memoria
 let matches = [];
 
 console.log('=================================');
 console.log('🚀 Servidor iniciando...');
 console.log('=================================');
+
+// ============================
+// RUTAS API
+// ============================
 
 // REGISTRO
 app.post('/api/register', async (req, res) => {
@@ -35,7 +41,6 @@ app.post('/api/register', async (req, res) => {
       return res.status(400).json({ message: 'Todos los campos son requeridos' });
     }
 
-    // Verificar si existe en MongoDB
     const exists = await User.findOne({ username });
     if (exists) {
       console.log('❌ Usuario ya existe:', username);
@@ -127,9 +132,23 @@ app.post('/api/matches', (req, res) => {
   }
 });
 
-// RESTO DE RUTAS IGUAL...
+// ============================
+// SERVIR FRONTEND ANGULAR
+// ============================
 
-// INICIAR SERVIDOR
+
+const angularDistPath = path.join(__dirname, '../src/dist/liga-deportiva-ut2');
+
+app.use(express.static(angularDistPath));
+
+
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(angularDistPath, 'index.html'));
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log('=================================');
   console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);

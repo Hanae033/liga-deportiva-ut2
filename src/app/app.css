@@ -1,0 +1,26 @@
+:root {
+  --bg: #0b0f12;
+  --card: #111417;
+  --muted: #9aa6a3;
+  --accent: #18a39a;
+  --accent-2: #12b886;
+  --glass: rgba(255, 255, 255, 0.04);
+}
+
+html, body {
+  background: var(--bg);
+  color: #e7f5f2;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-2);
+  text-decoration: none;
+}

@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<main class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="panel p-4">
+        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+        
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
+
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="username" class="form-label">Usuario</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="username" 
+              [(ngModel)]="username" 
+              name="username" 
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              id="password" 
+              [(ngModel)]="password" 
+              name="password" 
+              required>
+          </div>
+
+          <button type="submit" class="btn btn-cta w-100 mb-3">Entrar</button>
+          
+          <div class="text-center">
+            <p class="text-muted small">¿No tienes cuenta? 
+              <a routerLink="/register">Regístrate aquí</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,27 @@
+<div class="mb-3 d-flex justify-content-between align-items-center">
+  <h5>Equipos</h5>
+  <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedSport" (change)="filterBySport(selectedSport)">
+    <option value="all">Todas las competiciones</option>
+    <option value="futbol">Fútbol</option>
+    <option value="baloncesto">Baloncesto</option>
+    <option value="tenis">Tenis</option>
+    <option value="voleibol">Voleibol</option>
+  </select>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4 mb-3" *ngFor="let team of filteredTeams">
+    <div class="card panel h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ team.name }}</h5>
+        <p class="card-text text-muted mb-1">Capitán: {{ team.captain }}</p>
+        <p class="small">Jugadores: {{ team.players }} — Posición: {{ team.position }}</p>
+        <button class="btn btn-sm btn-soft">Ver Ficha</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="filteredTeams.length === 0" class="panel p-4 text-center text-muted">
+  <p>No hay equipos en esta categoría</p>
+</div>

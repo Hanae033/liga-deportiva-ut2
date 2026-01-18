@@ -1,0 +1,9 @@
+.text-accent {
+  color: var(--accent);
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  min-width: 30px;
+}

@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<main class="container my-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="panel p-4 mb-4">
+        <h2>Bienvenido, Usuario</h2>
+        <p class="text-muted">Equipo: {{ userTeam }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="mb-4">
+    <div class="row align-items-center g-3">
+      <div class="col-12 col-lg-6">
+        <div class="panel p-4">
+          <h1 class="display-6">Liga Deportiva del Instituto</h1>
+          <p class="lead text-muted">Vive la emoción del deporte escolar: fútbol, baloncesto, tenis, voleibol y balonmano.</p>
+          <p class="mt-2 small text-muted">Sigue los resultados en tiempo real y consulta todo sobre la liga</p>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 text-center hero-visual">
+        <img src="assets/img/jugadores.jpg" alt="jugadores" class="img-fluid rounded lift" style="max-height:260px;object-fit:cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Mis Partidos -->
+  <section class="mb-5">
+    <h4 class="mb-3">Mis Partidos</h4>
+    <div *ngIf="userMatches.length === 0" class="panel p-4 text-center text-muted">
+      <p>No tienes partidos programados</p>
+    </div>
+    <app-matches [matches]="userMatches" [isAdmin]="false"></app-matches>
+  </section>
+
+  <!-- Clasificaciones -->
+  <section class="mb-5">
+    <h4 class="mb-3">Clasificaciones</h4>
+    <app-standings></app-standings>
+  </section>
+</main>
+
+<app-footer></app-footer>

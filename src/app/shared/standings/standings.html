@@ -1,0 +1,44 @@
+<div class="mb-3 d-flex justify-content-between align-items-center">
+  <h5>Clasificaciones</h5>
+  <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedSport" (change)="changeSport()">
+    <option value="futbol">Fútbol</option>
+    <option value="baloncesto">Baloncesto</option>
+    <option value="voleibol">Voleibol</option>
+  </select>
+</div>
+
+<div class="panel p-3">
+  <div class="table-responsive">
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Equipo</th>
+          <th>PJ</th>
+          <th>PG</th>
+          <th>PE</th>
+          <th>PP</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let standing of standings">
+          <td>
+            <span class="badge" 
+                  [class.bg-success]="standing.position === 1"
+                  [class.bg-warning]="standing.position === 2"
+                  [class.bg-secondary]="standing.position > 2">
+              {{ standing.position }}
+            </span>
+          </td>
+          <td><strong>{{ standing.team }}</strong></td>
+          <td>{{ standing.played }}</td>
+          <td>{{ standing.won }}</td>
+          <td>{{ standing.drawn }}</td>
+          <td>{{ standing.lost }}</td>
+          <td><strong class="text-accent">{{ standing.points }}</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

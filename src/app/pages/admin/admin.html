@@ -1,0 +1,76 @@
+<app-header></app-header>
+
+<main class="container my-4">
+  <h2 class="mb-4">Panel de Administración</h2>
+
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+    {{ successMessage }}
+    <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+    {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+  </div>
+
+  <!-- Crear Partido -->
+  <section class="mb-5">
+    <div class="panel p-4">
+      <h4 class="mb-3">Crear Nuevo Partido</h4>
+      <form (ngSubmit)="createMatch()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="sport" class="form-label">Deporte</label>
+            <select class="form-select" id="sport" [(ngModel)]="newMatch.sport" name="sport" required>
+              <option value="futbol">Fútbol</option>
+              <option value="baloncesto">Baloncesto</option>
+              <option value="tenis">Tenis</option>
+              <option value="voleibol">Voleibol</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="date" class="form-label">Fecha y Hora</label>
+            <input type="datetime-local" class="form-control" id="date" [(ngModel)]="newMatch.date" name="date" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="teamA" class="form-label">Equipo Local</label>
+            <input type="text" class="form-control" id="teamA" [(ngModel)]="newMatch.teamA" name="teamA" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="teamB" class="form-label">Equipo Visitante</label>
+            <input type="text" class="form-control" id="teamB" [(ngModel)]="newMatch.teamB" name="teamB" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="location" class="form-label">Ubicación</label>
+            <input type="text" class="form-control" id="location" [(ngModel)]="newMatch.location" name="location" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="referee" class="form-label">Árbitro</label>
+            <input type="text" class="form-control" id="referee" [(ngModel)]="newMatch.referee" name="referee" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-cta">Crear Partido</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Lista de Partidos -->
+  <section class="mb-5">
+    <h4 class="mb-3">Partidos Programados</h4>
+    <app-matches [matches]="matches" [isAdmin]="true" (deleteMatch)="deleteMatch($event)"></app-matches>
+  </section>
+
+  <!-- Equipos -->
+  <section>
+    <h4 class="mb-3">Gestión de Equipos</h4>
+    <app-teams [isAdmin]="true"></app-teams>
+  </section>
+</main>
+
+<app-footer></app-footer>

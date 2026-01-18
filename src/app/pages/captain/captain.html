@@ -1,0 +1,107 @@
+<app-header></app-header>
+
+<main class="container my-4">
+  <h2 class="mb-4">Panel de Capitán</h2>
+  <p class="text-muted">Equipo: {{ teamName }}</p>
+
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+    {{ successMessage }}
+    <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+    {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+  </div>
+
+  <!-- Partidos del Equipo -->
+  <section class="mb-5">
+    <h4 class="mb-3">Partidos de Mi Equipo</h4>
+    <div class="row">
+      <div class="col-12">
+        <div class="panel p-3">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Deporte</th>
+                  <th>Local</th>
+                  <th>Visitante</th>
+                  <th>Resultado</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let match of teamMatches">
+                  <td>{{ match.date | date: 'dd/MM/yyyy HH:mm' }}</td>
+                  <td>{{ match.sport }}</td>
+                  <td>{{ match.teamA }}</td>
+                  <td>{{ match.teamB }}</td>
+                  <td>
+                    <span *ngIf="match.scoreA !== undefined">
+                      {{ match.scoreA }} - {{ match.scoreB }}
+                    </span>
+                    <span *ngIf="match.scoreA === undefined" class="text-muted">-</span>
+                  </td>
+                  <td>
+                    <span class="badge" 
+                          [class.bg-warning]="match.status === 'pending'"
+                          [class.bg-success]="match.status === 'finished'"
+                          [class.bg-info]="match.status === 'review'">
+                      {{ match.status === 'pending' ? 'Pendiente' : match.status === 'finished' ? 'Finalizado' : 'En Revisión' }}
+                    </span>
+                  </td>
+                  <td>
+                    <button 
+                      class="btn btn-sm btn-cta" 
+                      (click)="selectMatch(match)"
+                      [disabled]="match.status === 'finished'"
+                      data-bs-toggle="modal" 
+                      data-bs-target="#scoreModal">
+                      Introducir Resultado
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Modal para introducir resultado -->
+<div class="modal fade dark-modal" id="scoreModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Introducir Resultado</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedMatch">
+        <p><strong>Partido:</strong> {{ selectedMatch.teamA }} vs {{ selectedMatch.teamB }}</p>
+        <form (ngSubmit)="submitScore()">
+          <div class="row">
+            <div class="col-6 mb-3">
+              <label class="form-label">{{ selectedMatch.teamA }}</label>
+              <input type="number" class="form-control" [(ngModel)]="scoreA" name="scoreA" min="0" required>
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label">{{ selectedMatch.teamB }}</label>
+              <input type="number" class="form-control" [(ngModel)]="scoreB" name="scoreB" min="0" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-soft" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-cta" data-bs-dismiss="modal">Enviar Resultado</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

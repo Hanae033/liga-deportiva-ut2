@@ -1,0 +1,7 @@
+.hero-visual img {
+  transition: transform 0.3s ease;
+}
+
+.hero-visual img:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg topbar shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <img src="assets/img/maestre.png" alt="Logo" class="brand-badge">
+      <strong style="letter-spacing:.4px">Liga IES Maestre</strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navCollapse">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a class="nav-link" routerLink="/register">Registro</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated && userType === 'admin'">
+          <a class="nav-link" routerLink="/admin">Panel Admin</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated && userType === 'normal'">
+          <a class="nav-link" routerLink="/user">Mi Zona</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated && userType === 'capitan'">
+          <a class="nav-link" routerLink="/captain">Panel Capitán</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated && userType === 'arbitro'">
+          <a class="nav-link" routerLink="/referee">Panel Árbitro</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <button class="btn btn-sm btn-soft" (click)="logout()">Cerrar Sesión</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+

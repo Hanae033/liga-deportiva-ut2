@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api'; // Cambiar por URL de tu backend
+  private apiUrl = 'https://liga-deportiva-backend-zwc8.onrender.com/api'; // Cambiar por URL de tu backend
 
   constructor(private http: HttpClient, private router: Router) {}
 

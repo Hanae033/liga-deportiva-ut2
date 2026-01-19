@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MatchService {
-  private apiUrl = 'http://localhost:3000/api/matches';
+  private apiUrl = 'https://liga-deportiva-backend-zwc8.onrender.com/api/matches';
 
   constructor(private http: HttpClient) {}
 

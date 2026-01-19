@@ -14,7 +14,7 @@ import { FilterPipe } from '../../shared/pipes/filter-pipe';
 })
 export class RefereeComponent implements OnInit {
   refereeMatches: any[] = [];
-  refereeName = 'Carmelo Ruiz'; // Esto debería venir de la sesión
+  refereeName = 'Carmelo Ruiz'; 
 
   constructor(private matchService: MatchService) {}
 

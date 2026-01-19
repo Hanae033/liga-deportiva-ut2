@@ -15,7 +15,7 @@ import { StandingsComponent } from '../../shared/standings/standings';
 })
 export class UserComponent implements OnInit {
   userMatches: any[] = [];
-  userTeam = 'CD Tormeta IES'; // Esto debería venir de la sesión del usuario
+  userTeam = 'CD Tormeta IES'; 
 
   constructor(private matchService: MatchService) {}
 

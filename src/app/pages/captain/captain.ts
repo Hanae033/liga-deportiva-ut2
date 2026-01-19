@@ -15,7 +15,7 @@ import { MatchesComponent } from '../../shared/matches/matches';
 })
 export class CaptainComponent implements OnInit {
   teamMatches: any[] = [];
-  teamName = 'CD Tormeta IES'; // Esto debería venir de la sesión
+  teamName = 'CD Tormeta IES'; 
   selectedMatch: any = null;
   scoreA = 0;
   scoreB = 0;

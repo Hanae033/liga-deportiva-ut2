@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "start": "cd liga-deportiva-backend && npm install && node server.js",
-    "build": "ng build --configuration production",
+    "build": "npx ng build --configuration production",
     "build:all": "npm install && npm run build && cd liga-deportiva-backend && npm install",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "watch": "npx ng build --watch --configuration development",
+    "test": "npx ng test"
   },
   "prettier": {
     "printWidth": 100,

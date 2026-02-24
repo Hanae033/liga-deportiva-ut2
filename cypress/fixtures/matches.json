@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "1",
+    "sport": "futbol",
+    "teamA": "CD Tormeta IES",
+    "teamB": "Hoop Stars",
+    "date": "2025-03-10",
+    "location": "Ciudad Real",
+    "scoreA": 2,
+    "scoreB": 1
+  },
+  {
+    "_id": "2",
+    "sport": "baloncesto",
+    "teamA": "Dunkers",
+    "teamB": "CD Tormeta IES",
+    "date": "2025-03-12",
+    "location": "Almagro"
+  }
+]

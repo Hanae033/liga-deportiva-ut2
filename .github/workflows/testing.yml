@@ -1,0 +1,90 @@
+name: CI - Tests Liga Deportiva Hanane
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  # ── Laravel PHPUnit ──────────────────────────────────────────
+  laravel-tests:
+    name: Laravel — Unit + Feature Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Hanae033/liga-ies-maestre
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_sqlite, sqlite3
+
+      - name: Instalar dependencias Composer
+        run: composer install --prefer-dist --no-progress
+
+      - name: Crear .env.testing
+        run: |
+          cp .env.testing .env
+          echo "APP_KEY=" >> .env
+          php artisan key:generate
+
+      - name: Ejecutar PHPUnit
+        run: php artisan test
+
+  # ── Angular Karma ────────────────────────────────────────────
+  angular-tests:
+    name: Angular — Unit + Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Tests Angular
+        run: npx ng test --watch=false --browsers=ChromeHeadless
+
+  # ── Cypress E2E ──────────────────────────────────────────────
+  cypress-e2e:
+    name: Cypress — E2E Tests
+    runs-on: ubuntu-latest
+    needs: [angular-tests]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Iniciar Angular en background
+        run: npx ng serve &
+
+      - name: Esperar a que Angular esté listo
+        run: npx wait-on http://localhost:4200 --timeout 60000
+
+      - name: Ejecutar Cypress
+        run: npx cypress run --headless --browser chrome
+
+      - name: Subir capturas si falla
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
